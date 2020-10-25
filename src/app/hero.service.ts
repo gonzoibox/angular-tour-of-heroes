@@ -11,10 +11,9 @@ import { MessageService } from './message.service';
   providedIn: 'root',
 })
 export class HeroService {
+  /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {
-    // TODO: send the message _after_ fetching the heroes
-    this.messageService.add('HeroService: fetched heroes');
-    return of(HEROES);
+    return this.http.get<Hero[]>(this.heroesUrl);
   }
 
   getHero(id: number): Observable<Hero> {
